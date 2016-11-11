@@ -22,10 +22,6 @@ for i = 1:length(noise);
     [Dout,P] = RecoverDistPerPt(D0, noise(i)*dmin); 
     Pdist = [Pdist, norm(P-P0,'fro')];
     Ddist = [Ddist, norm(Dout-D0,'fro')/norm(D0,'fro')];
-%     Gout = -0.5*J*Dout.^2*J;
-%     [U,S,V] = svds(Gout,d); % the rank-3 approximation
-%     Gout = U*S*V';
-%     Dout = sqrt(ones(n,1)*diag(Gout)' + diag(Gout)*ones(1,n) - 2*Gout);
     [DNout,~] = sdr_complete_edm(Dout.^2, 1); % TODO: need to tune the lambda parameter 
     DeNdist = [DeNdist, norm(D0-sqrt(DNout),'fro')/norm(D0,'fro')];
 end
