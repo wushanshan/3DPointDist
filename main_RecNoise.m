@@ -22,7 +22,7 @@ for i = 1:length(noise);
     [Dout,P] = RecoverDistPerPt(D0, noise(i)*dmin); 
     Pdist = [Pdist, norm(P-P0,'fro')];
     Ddist = [Ddist, norm(Dout-D0,'fro')/norm(D0,'fro')];
-    [DNout,~] = sdr_complete_edm(Dout.^2, 1); % TODO: need to tune the lambda parameter 
+    [DNout,~] = sdr_complete_edm(Dout.^2, 1); % TODO: need to tune the lambda parameter (currently set it as 1)
     DeNdist = [DeNdist, norm(D0-sqrt(DNout),'fro')/norm(D0,'fro')];
 end
 figure;
